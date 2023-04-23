@@ -91,6 +91,8 @@ const Session = () => {
         "FAIL",
         `Couldn't send emails, as ${session.templateGeneration.failedAttempts} templates failed`
       );
+
+      return;
     }
 
     if (
@@ -104,6 +106,8 @@ const Session = () => {
         "SENDING",
         "Templates prepared successfully. Preparing to send emails."
       );
+
+      return;
     }
 
     if (session.status === "SENDING") {

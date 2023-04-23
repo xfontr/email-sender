@@ -1,16 +1,21 @@
 import Session from "./services/SessionStore";
-import doTemplates from "./services/doTemplates";
+import { doTemplates, getDatabase } from "./services/doTemplates";
+import prepareEmails from "./services/transporter";
 
 (async () => {
   const { start, next, isOver } = Session();
 
   start();
 
-  const templates = await doTemplates();
+  const { baseTemplate, clientsDB } = await getDatabase();
 
   next();
 
-  if (isOver()) return;
+  const templates = doTemplates(baseTemplate, clientsDB);
 
-  console.log(templates);
+  next();
+
+  if (isOver() || !templates) return;
+
+  prepareEmails(templates);
 })();

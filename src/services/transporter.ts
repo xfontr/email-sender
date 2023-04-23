@@ -5,16 +5,21 @@ import { createTransporter, verifyConnection } from "./emailServices";
 
 const { isOver } = Session();
 
-const sendEmails = (templates: Template[]) => {
+const prepareEmails = (templates: Template[]) => {
   const transporter = createTransporter();
 
   verifyConnection(transporter);
 
   if (isOver()) return;
 
-  templates.forEach((template) => {
-    transporter.sendMail(createMessage(template));
-  });
+  // eslint-disable-next-line consistent-return
+  return templates.reduce(
+    (pendingMails, template) => [
+      ...pendingMails,
+      transporter.sendMail(createMessage(template)),
+    ],
+    []
+  );
 };
 
-export default sendEmails;
+export default prepareEmails;
