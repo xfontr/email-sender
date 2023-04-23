@@ -1,17 +1,17 @@
-import { META_FLAGS } from "../configs/constants";
+import { FLAG_FORMAT, META_FLAGS } from "../configs/constants";
 import Flag from "../types/Flag";
-import { objectEntries, objectFromText } from "../utils/objectUtils";
+import { objectEntries } from "../utils/objectUtils";
 
-export const getFlags = (model: string): Flag[] => {
-  const readableModel = objectFromText(model);
-
-  return objectEntries<string>(readableModel)
+export const getFlags = <T = Record<string, string>>(model: T): Flag[] =>
+  objectEntries<string, T>(model)
     .map(([flag, content]) =>
-      META_FLAGS.includes(flag) ? undefined : { [flag]: content }
+      META_FLAGS.includes(flag) ? undefined : { flag, content }
     )
     .filter((flag) => !!flag);
-};
 
-export const injectHTML = (text: string, flags: Flag[]) => {
-  flags.forEach(({ flag, content }) => text.replaceAll(flag, content));
-};
+export const injectHTML = (text: string, flags: Flag[]): string =>
+  flags.reduce(
+    (initialText, { flag, content }) =>
+      initialText.replaceAll(FLAG_FORMAT(flag), content).replaceAll("\n", ""),
+    text
+  );

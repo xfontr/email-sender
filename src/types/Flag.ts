@@ -1,5 +1,6 @@
 type Flag = {
-  [flag: string]: string;
+  flag: string;
+  content: string;
 };
 
 export default Flag;
