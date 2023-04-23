@@ -26,9 +26,15 @@ const doTemplates = async (): Promise<void | Template[]> => {
         return undefined;
       }
 
+      if (!client?.subject) {
+        logFailedTemplate(index, "Client's subject not available");
+        return undefined;
+      }
+
       return {
         template: injectHTML(baseTemplate, getFlags(client)),
         contact: client.contactData.email,
+        subject: client.subject,
       };
     })
     .filter((client) => !!client);
