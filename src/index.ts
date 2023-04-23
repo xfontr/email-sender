@@ -1,5 +1,5 @@
-import { parseTemplate } from "./services/parseHTML";
+import doTemplates from "./services/doTemplates";
 
 (async () => {
-  await parseTemplate();
+  await doTemplates();
 })();
