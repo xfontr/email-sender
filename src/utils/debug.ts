@@ -1,3 +1,4 @@
+import "../loadEnvironment";
 import DebugFunction, { Debug, Debugger } from "debug";
 import chalk, { Chalk } from "chalk";
 import ENVIRONMENT from "../configs/environment";
@@ -16,18 +17,16 @@ export const setMessage = (color: DebugColors, message: string): string =>
   BaseColors(chalk)[color](message);
 
 const importDebugAndSetBaseLocation = (
-  debug: Debug,
   baseLocation: string,
   callback: Function
-): Debug => callback(debug, baseLocation);
+): Debug => callback(baseLocation);
 
 const baseSetDebug =
-  (debug: Debug, baseLocation: string) =>
+  (baseLocation: string) =>
   (currentLocation: string): Debugger =>
-    debug(`${baseLocation.slice(0, -+`${":*".length}`)}:${currentLocation}`);
+    DebugFunction(`${baseLocation.slice(0, -2)}:${currentLocation}`);
 
 export const setDebugWithoutColors = importDebugAndSetBaseLocation(
-  DebugFunction,
   ENVIRONMENT.debug,
   baseSetDebug
 );
