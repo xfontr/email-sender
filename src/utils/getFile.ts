@@ -8,7 +8,7 @@ const getFile = async (route: string) => {
     path.join(__dirname, route)
   );
 
-  return file[0] ? file[0].toString() : file[1];
+  return file[1] ? file[1] : file[0].toString();
 };
 
 export default getFile;
