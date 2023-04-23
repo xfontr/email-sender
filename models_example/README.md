@@ -27,4 +27,4 @@
 
 ### Usage (important)
 
-Place the template.html and clients.json fields in a folder called "data", inside the "src" folder. This way: src/data/template.html, and src/data/clients.json
+Place the template.html and clients.json fields in a folder called "data", inside the "dist" folder. This way: dist/data/template.html, and dist/data/clients.json
