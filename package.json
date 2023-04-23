@@ -24,6 +24,7 @@
     "@types/debug": "^4.1.7",
     "@types/jest": "^28.1.6",
     "@types/node": "^18.7.1",
+    "@types/nodemailer": "^6.4.7",
     "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
@@ -44,6 +45,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "debug": "^4.3.4",
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "nodemailer": "^6.9.1"
   }
 }
