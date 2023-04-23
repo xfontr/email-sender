@@ -1,4 +1,6 @@
-# Fields
+# Usage
+
+Place the template.html, flags.json and clients.json fields in a folder called "data", inside the "dist" folder. This way: dist/data/template.html, dist/data/clients.json and so on.
 
 ### Mandatory structure
 
@@ -24,7 +26,3 @@
   introductionText: string;
 }
 ```
-
-### Usage (important)
-
-Place the template.html and clients.json fields in a folder called "data", inside the "dist" folder. This way: dist/data/template.html, and dist/data/clients.json
