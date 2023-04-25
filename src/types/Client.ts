@@ -1,6 +1,9 @@
+import Email from "./Email";
+
 type Client = {
+  subject: string;
   contactData: {
-    email: string;
+    email: Email;
   };
 };
 

@@ -1,6 +1,9 @@
+import Email from "./Email";
+
 type Template = {
+  subject: string;
   template: string;
-  contact: string;
+  contact: Email;
 };
 
 export default Template;
