@@ -1,19 +1,23 @@
-import getFile from "../utils/getFile";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { parse } from "papaparse";
+import path from "path";
+import getFile, { getFileWithoutExtension } from "../utils/getFile";
 import { setDebug } from "../utils/debug";
 import Session from "./SessionStore";
+import { CLIENTS, DEFAULT_FLAGS, TEMPLATE } from "../configs/constants";
 
 const debug = setDebug("parseFile");
 
 const { end } = Session();
 
-const templateRoute = "../data/template.html";
-const clientsRoute = "../data/clients.json";
-const defaultFlagsRoute = "../data/master.json";
-
 export const parseFile =
   (route: string, fileName: string, required = true) =>
-  async (): Promise<false | string> => {
-    const file = await getFile(route);
+  async ({ skipCsv = true, knownExtension = true } = {}): Promise<
+    false | string | string[][]
+  > => {
+    const file = knownExtension
+      ? await getFile(route)
+      : await getFileWithoutExtension(route, fileName);
 
     if (typeof file !== "string" && !required) {
       return false;
@@ -25,13 +29,18 @@ export const parseFile =
       return false;
     }
 
+    if (!skipCsv && path.extname(fileName) === "csv") {
+      const parsedCSV = parse<string[]>(file)?.data;
+      return parsedCSV;
+    }
+
     return file.toString();
   };
 
-export const parseTemplate = parseFile(templateRoute, "template.html");
-export const parseClients = parseFile(clientsRoute, "clients.json");
+export const parseTemplate = parseFile(TEMPLATE.route, TEMPLATE.name);
+export const parseClients = parseFile(CLIENTS.route, CLIENTS.name);
 export const parseDefaultFlags = parseFile(
-  defaultFlagsRoute,
-  "master.json",
+  DEFAULT_FLAGS.route,
+  CLIENTS.name,
   false
 );

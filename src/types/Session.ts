@@ -1,3 +1,5 @@
+import Extensions from "./Extensions";
+
 export type Session = {
   status: "INIT" | "DATABASE" | "TEMPLATES" | "SENDING" | "FAIL" | "SUCCESS";
   state: string;
@@ -7,4 +9,5 @@ export type Session = {
   };
   startTime: Date;
   endTime?: Date;
+  preferredDBExtension?: Extensions;
 };

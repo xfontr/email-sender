@@ -5,8 +5,6 @@
     "surname": "Doe",
     "company": "JohnDoe 3000",
     "introductionText": "Your business has a very poor email marketing strategy",
-    "contactData": {
-      "email": "johnDoe@johndoe.com"
-    }
+    "email": "johnDoe@johndoe.com"
   }
 ]

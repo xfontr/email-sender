@@ -7,11 +7,11 @@ const { emailAddress, userName } = ENVIRONMENT;
 
 export const baseCreateMessage =
   (sender: Email) =>
-  (template: Template): Message => ({
+  ({ contact: to, template: html, subject }: Template): Message => ({
     from: `${userName} <${sender}>`,
-    to: template.contact,
-    html: template.template,
-    subject: template.subject,
+    to,
+    html,
+    subject,
   });
 
 export const createMessage = baseCreateMessage(emailAddress);
