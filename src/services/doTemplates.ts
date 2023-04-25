@@ -21,7 +21,10 @@ export const getDatabase = async (): Promise<{
   const baseTemplate = (await parseTemplate()) as string;
   if (!baseTemplate || isOver()) return;
 
-  const clientsDB = await parseClients();
+  const clientsDB = await parseClients({
+    skipCsv: false,
+    knownExtension: false,
+  });
   if (!clientsDB || isOver()) return;
 
   const defaultFlags = (await parseDefaultFlags()) as string | false;

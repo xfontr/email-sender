@@ -4,17 +4,21 @@ import { doTemplates, getDatabase } from "./services/doTemplates";
 import { executeEmails, prepareEmails } from "./services/transporter";
 
 (async () => {
-  if (BLOCK_SESSION) return;
-
   const { start, next, isOver, end } = Session();
 
   start();
 
-  const { baseTemplate, clientsDB, defaultFlags } = await getDatabase();
+  const data = await getDatabase();
 
   next();
 
-  const templates = doTemplates(baseTemplate, clientsDB, defaultFlags);
+  if (BLOCK_SESSION) return;
+
+  const templates = doTemplates(
+    data?.baseTemplate,
+    data?.clientsDB,
+    data?.defaultFlags
+  );
 
   next();
 
