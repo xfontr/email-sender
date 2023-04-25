@@ -2,9 +2,7 @@ import Email from "./Email";
 
 type Client = {
   subject: string;
-  contactData: {
-    email: Email;
-  };
+  email: Email;
 };
 
 export default Client;

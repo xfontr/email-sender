@@ -14,9 +14,7 @@ It is not mandatory to have a master.json nor to fill all the fields, but it's h
 
 ```ts
 {
-  contactData: {
-    email: string;
-  }
+  email: string;
 }
 ```
 
