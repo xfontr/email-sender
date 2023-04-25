@@ -1,11 +1,12 @@
 import Template from "../types/Template";
 import { createMessage } from "../utils/createMessage";
+import tryCatch from "../utils/tryCatch";
 import Session from "./SessionStore";
 import { createTransporter, verifyConnection } from "./emailServices";
 
 const { isOver } = Session();
 
-const prepareEmails = (templates: Template[]) => {
+export const prepareEmails = (templates: Template[]): Promise<unknown>[] => {
   const transporter = createTransporter();
 
   verifyConnection(transporter);
@@ -22,4 +23,9 @@ const prepareEmails = (templates: Template[]) => {
   );
 };
 
-export default prepareEmails;
+export const executeEmails = async (
+  ...emails: Promise<unknown>[]
+): Promise<boolean> => {
+  const status = await tryCatch(Promise.all, ...emails);
+  return !!status[1];
+};

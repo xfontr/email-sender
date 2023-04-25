@@ -8,7 +8,7 @@ const { end } = Session();
 
 const { email } = ENVIRONMENT;
 
-const transporterOptions: TransportOptions = {
+const transporterOptions = {
   ...email,
   ...EMAIL_OPTIONS,
 } as TransportOptions;
@@ -18,8 +18,8 @@ export const createTransporter = () =>
 
 export const verifyConnection = (transporter: Transporter) => {
   transporter.verify((error) => {
-    if (error) {
-      end("FAIL", "Could not verify the server connection");
-    }
+    if (!error) return;
+
+    end("FAIL", "Could not verify the server connection");
   });
 };
