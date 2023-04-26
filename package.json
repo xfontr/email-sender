@@ -7,7 +7,7 @@
     "build": "npm run lint && tsc",
     "ts": "tsc -w",
     "start": "npm run build && node .",
-    "start:dev": "npm run build && nodemon -q",
+    "start:dev": "nodemon -q",
     "test": "jest src --watchAll=false",
     "test:coverage": "jest src --coverage --watchAll=false",
     "test:coverage:open": "npm run test:coverage && open coverage/lcov-report/index.html",
@@ -22,6 +22,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/debug": "^4.1.7",
+    "@types/flat": "^5.0.2",
     "@types/jest": "^28.1.6",
     "@types/node": "^18.7.1",
     "@types/nodemailer": "^6.4.7",
@@ -47,6 +48,7 @@
     "chalk": "^4.1.2",
     "debug": "^4.3.4",
     "dotenv": "^16.0.1",
+    "flat": "^5.0.2",
     "nodemailer": "^6.9.1",
     "papaparse": "^5.4.1"
   }

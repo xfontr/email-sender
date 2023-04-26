@@ -1,7 +1,7 @@
 import { BLOCK_SESSION } from "./configs/constants";
 import Session from "./services/SessionStore";
 import { doTemplates, getDatabase } from "./services/doTemplates";
-import { executeEmails, prepareEmails } from "./services/transporter";
+import { executeEmails, prepareEmails } from "./services/emailServices";
 
 (async () => {
   const { start, next, isOver, end } = Session();
@@ -25,6 +25,8 @@ import { executeEmails, prepareEmails } from "./services/transporter";
   if (isOver() || !templates) return;
 
   const emails = prepareEmails(templates);
+
+  next();
 
   if (isOver()) return;
 

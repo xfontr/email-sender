@@ -17,5 +17,6 @@ module.exports = {
       "always",
       { exceptAfterSingleLine: true },
     ],
+    "consistent-return": "off",
   },
 };
