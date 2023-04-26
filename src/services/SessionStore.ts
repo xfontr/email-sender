@@ -103,15 +103,15 @@ const Session = () => {
       logFailedTemplates();
 
       setStatus(
-        "SENDING",
-        "Templates prepared successfully. Preparing to send emails."
+        "CONNECTING",
+        "Templates prepared successfully. Connecting to the account and preparing to send emails"
       );
 
       return;
     }
 
-    if (session.status === "SENDING") {
-      setStatus("SUCCESS", "Emails sent successfully");
+    if (session.status === "CONNECTING") {
+      setStatus("SENDING", "Sending emails");
     }
   };
 

@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import { REQUIRE_SUBJECT } from "../configs/constants";
 import Client from "../types/Client";
 import Template from "../types/Template";

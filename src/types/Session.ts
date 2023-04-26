@@ -1,7 +1,14 @@
 import Extensions from "./Extensions";
 
 export type Session = {
-  status: "INIT" | "DATABASE" | "TEMPLATES" | "SENDING" | "FAIL" | "SUCCESS";
+  status:
+    | "INIT"
+    | "DATABASE"
+    | "TEMPLATES"
+    | "CONNECTING"
+    | "SENDING"
+    | "FAIL"
+    | "SUCCESS";
   state: string;
   templateGeneration: {
     failedAttempts: number;
